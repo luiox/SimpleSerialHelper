@@ -13,8 +13,7 @@ MainWindow::MainWindow(QWidget *parent)
     InitialSetting();
 
     // 关联按钮信号槽
-    for (size_t i = 1; i < 6; ++i)
-    {
+    for (size_t i = 1; i < 6; ++i) {
         QPushButton* btn = ui->groupBoxMessage->findChild<QPushButton*>(
             QString("pushButtonSend%1").arg(QString::number(i)));
         connect(btn, SIGNAL(clicked()), this, SLOT(SingleSendData()));
@@ -95,15 +94,12 @@ void MainWindow::ReadSerialData()
 
     rxDatas=serialPort->readAll();
 
-    if(!rxDatas.isNull())
-    {
-        if(ui->checkBoxRecieve->isChecked())    //十六进制显示
-        {
+    if(!rxDatas.isNull()) {
+        if(ui->checkBoxRecieve->isChecked()) {   //十六进制显示
              context = rxDatas.toHex(' ');
              context = context.toUpper();
         }
-        else    //ASCII显示
-        {
+        else {   //ASCII显示
             context = rxDatas;
         }
 
